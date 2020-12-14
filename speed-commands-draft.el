@@ -1,4 +1,4 @@
-;;; draft.el -*- lexical-binding: t; -*-
+;;; speed-commands-draft.el -*- lexical-binding: t; -*-
 
 (setq org-use-speed-commands t)
 
