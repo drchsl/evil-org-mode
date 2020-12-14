@@ -23,8 +23,9 @@
 
       '(("Outline Navigation")
 
-        ("j" . (org-speed-move-safe 'org-next-visible-heading))
-        ("k" . (org-speed-move-safe 'org-previous-visible-heading))
+        ;; NOTE Moved to the bottom
+        ;; ("j" . (org-speed-move-safe 'org-next-visible-heading))
+        ;; ("k" . (org-speed-move-safe 'org-previous-visible-heading))
 
         ;; Not sure about the usefulness of these and
         ;; unable to find a good, free binding -> keep default
@@ -36,20 +37,23 @@
         ("F" . org-next-block)
         ("B" . org-previous-block)
 
-        ("h" . (org-speed-move-safe 'outline-up-heading))
+        ;; NOTE Moved to the bottom
+        ;; ("h" . (org-speed-move-safe 'outline-up-heading))
+
         ("g" . org-goto)
         ;; This is no refile, but a goto in disguise
         ("G" . (org-refile t))
 
         ("Outline Visibility")
 
+        ;; NOTE Moved to the bottom
         ;; Was c/C, but c makes more sense for `org-edit-headline'
         ;; l/L is not intuitive but useful for one-handed operation
         ;; ... and one can also use TAB/S-TAB
         ;; (not binding l at all will cause the char to be inserted, which is
         ;; unexpected and breaks speed-key-navigation)
-        ("l" . org-cycle)
-        ("L" . org-shifttab)
+        ;; ("l" . org-cycle)
+        ;; ("L" . org-shifttab)
 
         (" " . org-display-outline-path)
         ("n" . org-toggle-narrow-to-subtree)
@@ -162,4 +166,21 @@
         ;; Addition
         ("u" . undo)
         ;; Addition
-        ("z" . evil-scroll-line-to-center)))
+        ("z" . evil-scroll-line-to-center)
+
+        ("For non-hjkl evil-org-movement-bindings to not get overwritten,
+ these have to be on the bottom... ugly.")
+
+        (,(alist-get 'down evil-org-movement-bindings)
+         . (org-speed-move-safe 'org-next-visible-heading))
+
+        (,(alist-get 'up evil-org-movement-bindings)
+         . (org-speed-move-safe 'org-previous-visible-heading))
+        (,(alist-get 'left evil-org-movement-bindings)
+
+         . (org-speed-move-safe 'outline-up-heading))
+        (,(alist-get 'right evil-org-movement-bindings)
+         . org-cycle)
+
+        (,(upcase (alist-get 'right evil-org-movement-bindings))
+         . org-shifttab)))
